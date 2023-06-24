@@ -9,7 +9,7 @@ jobs:
   migrate_dev:
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: flyway.url=jdbc:postgresql://0.tcp.in.ngrok.io:12024 /postgresdb
+      DATABASE_URL: flyway.url=jdbc:postgresql://0.tcp.in.ngrok.io:12024/postgresdb
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: postgres
 
@@ -31,5 +31,3 @@ jobs:
       - name: Run Flyway Migration (Dev)
         run: |
           $FLYWAY_HOME/flyway -user=$DATABASE_USERNAME -password=$DATABASE_PASSWORD -url=$DATABASE_URL -locations=filesystem:db/migration migrate
-
- 

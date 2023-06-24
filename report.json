@@ -1,0 +1,167 @@
+{
+  "individualResults": [
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": null,
+      "schemaName": "",
+      "migrations": [],
+      "migrationsExecuted": 0,
+      "success": false,
+      "flywayVersion": "9.19.3",
+      "database": "postgres",
+      "warnings": [],
+      "timestamp": "2023-06-24T19:29:48.568995300",
+      "operation": "migrate",
+      "exception": "Migration V1__Create_Table.sql failed\n-------------------------------------\nSQL State  : 42601\nError Code : 0\nMessage    : ERROR: syntax error at or near \"AUTO_INCREMENT\"\n  Position: 62\nLocation   : db\\migration\\V1__Create_Table.sql (C:\\flyway-tutorial\\db\\migration\\V1__Create_Table.sql)\nLine       : 1\nStatement  : CREATE TABLE IF NOT EXISTS customers (\r\n  id INT PRIMARY KEY AUTO_INCREMENT,\r\n  name VARCHAR(100) NOT NULL,\r\n  email VARCHAR(100) NOT NULL UNIQUE\r\n)\n",
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": null,
+      "targetSchemaVersion": "2",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "1",
+          "description": "Create Table",
+          "type": "SQL",
+          "filepath": "C:\\flyway-tutorial\\db\\migration\\V1__Create_Table.sql",
+          "executionTime": 30
+        },
+        {
+          "category": "Versioned",
+          "version": "2",
+          "description": "Add Column",
+          "type": "SQL",
+          "filepath": "C:\\flyway-tutorial\\db\\migration\\V2__Add_Column.sql",
+          "executionTime": 10
+        }
+      ],
+      "migrationsExecuted": 2,
+      "success": true,
+      "flywayVersion": "9.19.3",
+      "database": "postgres",
+      "warnings": [],
+      "timestamp": "2023-06-24T19:32:09.767347300",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": "2",
+      "targetSchemaVersion": null,
+      "schemaName": "",
+      "migrations": [],
+      "migrationsExecuted": 0,
+      "success": false,
+      "flywayVersion": "9.19.3",
+      "database": "postgres",
+      "warnings": [],
+      "timestamp": "2023-06-24T19:45:47.023899700",
+      "operation": "migrate",
+      "exception": "Migration R__Update_Customer_Timestamps.sql failed\n--------------------------------------------------\nSQL State  : 42703\nError Code : 0\nMessage    : ERROR: column \"updated_at\" of relation \"customers\" does not exist\n  Position: 22\nLocation   : db\\migration\\R__Update_Customer_Timestamps.sql (C:\\flyway-tutorial\\db\\migration\\R__Update_Customer_Timestamps.sql)\nLine       : 1\nStatement  : UPDATE customers SET updated_at \u003d CURRENT_TIMESTAMP\n",
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": "2",
+      "targetSchemaVersion": "3",
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Versioned",
+          "version": "3",
+          "description": "Add Column",
+          "type": "SQL",
+          "filepath": "C:\\flyway-tutorial\\db\\migration\\V3__Add_Column.sql",
+          "executionTime": 19
+        },
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "Update Customer Timestamps",
+          "type": "SQL",
+          "filepath": "C:\\flyway-tutorial\\db\\migration\\R__Update_Customer_Timestamps.sql",
+          "executionTime": 13
+        }
+      ],
+      "migrationsExecuted": 2,
+      "success": true,
+      "flywayVersion": "9.19.3",
+      "database": "postgres",
+      "warnings": [],
+      "timestamp": "2023-06-24T19:48:54.960676100",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": "3",
+      "targetSchemaVersion": null,
+      "schemaName": "",
+      "migrations": [],
+      "migrationsExecuted": 0,
+      "success": false,
+      "flywayVersion": "9.19.3",
+      "database": "postgres",
+      "warnings": [],
+      "timestamp": "2023-06-24T19:53:41.053197600",
+      "operation": "migrate",
+      "exception": "Migration R__Insert_customer.sql failed\n---------------------------------------\nSQL State  : 23502\nError Code : 0\nMessage    : ERROR: null value in column \"name\" of relation \"customers\" violates not-null constraint\n  Detail: Failing row contains (1, null, null, null, null).\nLocation   : db\\migration\\R__Insert_customer.sql (C:\\flyway-tutorial\\db\\migration\\R__Insert_customer.sql)\nLine       : 1\nStatement  : INSERT into customers(id) values(1)\n",
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": "3",
+      "targetSchemaVersion": null,
+      "schemaName": "",
+      "migrations": [],
+      "migrationsExecuted": 0,
+      "success": false,
+      "flywayVersion": "9.19.3",
+      "database": "postgres",
+      "warnings": [],
+      "timestamp": "2023-06-24T19:54:12.266557900",
+      "operation": "migrate",
+      "exception": "Migration R__Insert_customer.sql failed\n---------------------------------------\nSQL State  : 23502\nError Code : 0\nMessage    : ERROR: null value in column \"email\" of relation \"customers\" violates not-null constraint\n  Detail: Failing row contains (1, Random, null, null, null).\nLocation   : db\\migration\\R__Insert_customer.sql (C:\\flyway-tutorial\\db\\migration\\R__Insert_customer.sql)\nLine       : 1\nStatement  : INSERT into customers(id,name) values(1,\u0027Random\u0027)\n",
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": "3",
+      "targetSchemaVersion": null,
+      "schemaName": "",
+      "migrations": [],
+      "migrationsExecuted": 0,
+      "success": true,
+      "flywayVersion": "9.19.3",
+      "database": "postgres",
+      "warnings": [],
+      "timestamp": "2023-06-24T19:55:55.796532300",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    },
+    {
+      "initialSchemaVersion": "3",
+      "targetSchemaVersion": null,
+      "schemaName": "",
+      "migrations": [
+        {
+          "category": "Repeatable",
+          "version": "",
+          "description": "Update Customer Timestamps",
+          "type": "SQL",
+          "filepath": "C:\\flyway-tutorial\\db\\migration\\R__Update_Customer_Timestamps.sql",
+          "executionTime": 22
+        }
+      ],
+      "migrationsExecuted": 1,
+      "success": true,
+      "flywayVersion": "9.19.3",
+      "database": "postgres",
+      "warnings": [],
+      "timestamp": "2023-06-24T20:00:46.411526900",
+      "operation": "migrate",
+      "exception": null,
+      "licenseFailed": false
+    }
+  ]
+}

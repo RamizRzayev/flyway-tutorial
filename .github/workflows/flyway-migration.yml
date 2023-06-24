@@ -12,7 +12,7 @@ jobs:
       DATABASE_URL: flyway.url=jdbc:postgresql://0.tcp.in.ngrok.io:12024/postgresdb
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: postgres
-      FLYWAY_JAR: ./flyway-8.2.2/flyway.jar
+      FLYWAY_JAR: ./flyway-8.2.2/flyway-commandline-8.2.2.jar
 
     steps:
       - name: Checkout Repository
@@ -33,7 +33,7 @@ jobs:
       - name: Run Flyway Migration (Dev)
         run: |
           cd $FLYWAY_HOME
-          java -cp $FLYWAY_JAR:./drivers/* org.flywaydb.commandline.Main \
+          java -cp $FLYWAY_JAR org.flywaydb.commandline.Main \
             -user=$DATABASE_USERNAME \
             -password=$DATABASE_PASSWORD \
             -url=$DATABASE_URL \

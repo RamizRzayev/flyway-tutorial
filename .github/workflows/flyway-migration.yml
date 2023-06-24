@@ -17,21 +17,12 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
 
-      - name: Set up Java
-        uses: actions/setup-java@v2
-        with:
-          java-version: '11'
-          distribution: 'adopt'
-
-      - name: Set up Flyway
-        run: |
-          wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/8.2.2/flyway-commandline-8.2.2.tar.gz | tar xvz
-          export FLYWAY_HOME=$(pwd)/flyway-8.2.2
-          export PATH=$PATH:$FLYWAY_HOME
-
-      - name: Print PATH
-        run: echo $PATH
-
       - name: Run Flyway Migration (Dev)
         run: |
-          ${{ env.FLYWAY_HOME }}/flyway -user=${{ env.DATABASE_USERNAME }} -password=${{ env.DATABASE_PASSWORD }} -url=${{ env.DATABASE_URL }} -locations=filesystem:db/migration migrate
+          docker run --rm \
+            -v $(pwd)/db/migration:/flyway/sql \
+            -e FLYWAY_URL="${{ env.DATABASE_URL }}" \
+            -e FLYWAY_USER="${{ env.DATABASE_USERNAME }}" \
+            -e FLYWAY_PASSWORD="${{ env.DATABASE_PASSWORD }}" \
+            flyway/flyway:7.15.0 \
+            migrate

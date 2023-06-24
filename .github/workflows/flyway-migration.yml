@@ -3,7 +3,7 @@ name: Flyway Migration
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   migrate_dev:

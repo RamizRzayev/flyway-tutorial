@@ -28,8 +28,8 @@ jobs:
           curl -s "https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/8.2.2/flyway-commandline-8.2.2.tar.gz" --output flyway.tar.gz
           tar -xf flyway.tar.gz
           export FLYWAY_HOME=$(pwd)/flyway-8.2.2
+          export FLYWAY_JAR=$FLYWAY_HOME/flyway-commandline-8.2.2.jar
 
       - name: Run Flyway Migration (Dev)
         run: |
-          cd $FLYWAY_HOME
-          java -cp flyway.jar org.flywaydb.commandline.Main -user=$DATABASE_USERNAME -password=$DATABASE_PASSWORD -url=$DATABASE_URL -locations=filesystem:db/migration migrate
+          java -cp $FLYWAY_JAR org.flywaydb.commandline.Main -user=$DATABASE_USERNAME -password=$DATABASE_PASSWORD -url=$DATABASE_URL -locations=filesystem:db/migration migrate

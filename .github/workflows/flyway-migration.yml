@@ -32,4 +32,4 @@ jobs:
       - name: Run Flyway Migration (Dev)
         run: |
           cd $FLYWAY_HOME
-          ./flyway -user=$DATABASE_USERNAME -password=$DATABASE_PASSWORD -url=$DATABASE_URL -locations=filesystem:db/migration migrate
+          java -cp flyway.jar org.flywaydb.commandline.Main -user=$DATABASE_USERNAME -password=$DATABASE_PASSWORD -url=$DATABASE_URL -locations=filesystem:db/migration migrate

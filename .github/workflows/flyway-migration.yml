@@ -31,4 +31,5 @@ jobs:
 
       - name: Run Flyway Migration (Dev)
         run: |
-          $FLYWAY_HOME/flyway -user=$DATABASE_USERNAME -password=$DATABASE_PASSWORD -url=$DATABASE_URL -locations=filesystem:db/migration migrate
+          cd $FLYWAY_HOME
+          ./flyway -user=$DATABASE_USERNAME -password=$DATABASE_PASSWORD -url=$DATABASE_URL -locations=filesystem:db/migration migrate

@@ -34,4 +34,4 @@ jobs:
 
       - name: Run Flyway Migration (Dev)
         run: |
-          $FLYWAY_HOME/flyway -user=${{ env.DATABASE_USERNAME }} -password=${{ env.DATABASE_PASSWORD }} -url=${{ env.DATABASE_URL }} -locations=filesystem:db/migration migrate
+          ${{ env.FLYWAY_HOME }}/flyway -user=${{ env.DATABASE_USERNAME }} -password=${{ env.DATABASE_PASSWORD }} -url=${{ env.DATABASE_URL }} -locations=filesystem:db/migration migrate

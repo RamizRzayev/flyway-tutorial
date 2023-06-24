@@ -27,8 +27,8 @@ jobs:
         run: |
           wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/8.2.2/flyway-commandline-8.2.2.tar.gz | tar xvz
           export FLYWAY_HOME=$(pwd)/flyway-8.2.2
+          export PATH=$PATH:$FLYWAY_HOME
 
       - name: Run Flyway Migration (Dev)
         run: |
-          export PATH=$PATH:${{ env.FLYWAY_HOME }}
           flyway -user=${{ env.DATABASE_USERNAME }} -password=${{ env.DATABASE_PASSWORD }} -url=${{ env.DATABASE_URL }} -locations=filesystem:db/migration migrate

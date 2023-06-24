@@ -33,7 +33,7 @@ jobs:
       - name: Run Flyway Migration (Dev)
         run: |
           cd $FLYWAY_HOME
-          java -cp $FLYWAY_JAR org.flywaydb.commandline.Main \
+          java -cp $FLYWAY_JAR:./drivers/* org.flywaydb.commandline.Main \
             -user=$DATABASE_USERNAME \
             -password=$DATABASE_PASSWORD \
             -url=$DATABASE_URL \

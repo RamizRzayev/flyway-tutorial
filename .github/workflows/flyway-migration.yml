@@ -9,10 +9,9 @@ jobs:
   migrate_dev:
     runs-on: ubuntu-latest
     env:
-      DATABASE_URL: flyway.url=jdbc:postgresql://0.tcp.in.ngrok.io:12024/postgresdb
+      DATABASE_URL: jdbc:postgresql://0.tcp.in.ngrok.io:12024/postgresdb
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: postgres
-      FLYWAY_JAR: ./flyway-8.2.2/flyway-commandline-8.2.2.jar
 
     steps:
       - name: Checkout Repository
@@ -22,20 +21,12 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adopt'
 
       - name: Set up Flyway
         run: |
-          curl -s "https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/8.2.2/flyway-commandline-8.2.2.tar.gz" --output flyway.tar.gz
-          tar -xf flyway.tar.gz
+          wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/8.2.2/flyway-commandline-8.2.2.tar.gz | tar -xvz
           export FLYWAY_HOME=$(pwd)/flyway-8.2.2
 
       - name: Run Flyway Migration (Dev)
         run: |
-          cd $FLYWAY_HOME
-          java -cp $FLYWAY_JAR org.flywaydb.commandline.Main \
-            -user=$DATABASE_USERNAME \
-            -password=$DATABASE_PASSWORD \
-            -url=$DATABASE_URL \
-            -locations=filesystem:db/migration \
-            migrate
+          java -cp "$FLYWAY_HOME/lib/*" org.flywaydb.commandline.Main -user=$DATABASE_USERNAME -password=$DATABASE_PASSWORD -url=$DATABASE_URL -locations=filesystem:db/migration migrate

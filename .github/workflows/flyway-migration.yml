@@ -21,20 +21,12 @@ jobs:
         uses: actions/setup-java@v2
         with:
           java-version: '11'
-          distribution: 'adopt'
-          architecture: 'x64'
-          check-latest: false
-          server-id: github
-          server-username: ${{ github.actor }}
-          server-password: ${{ secrets.GITHUB_TOKEN }}
-          overwrite-settings: true
 
       - name: Set up Flyway
         run: |
-          curl -s "https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/8.2.2/flyway-commandline-8.2.2.tar.gz" --output flyway.tar.gz
-          tar -xf flyway.tar.gz
+          wget -qO- https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/8.2.2/flyway-commandline-8.2.2.tar.gz | tar xvz
           export FLYWAY_HOME=$(pwd)/flyway-8.2.2
 
       - name: Run Flyway Migration (Dev)
         run: |
-          ${{ env.FLYWAY_HOME }}/flyway -user=${{ env.DATABASE_USERNAME }} -password=${{ env.DATABASE_PASSWORD }} -url=${{ env.DATABASE_URL }} -locations=filesystem:db/migration migrate
+          $FLYWAY_HOME/flyway -user=${{ env.DATABASE_USERNAME }} -password=${{ env.DATABASE_PASSWORD }} -url=${{ env.DATABASE_URL }} -locations=filesystem:db/migration migrate

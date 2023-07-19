@@ -7,9 +7,9 @@
 5. To run flyway localy use : flyway -configFiles=C:\flyway-tutorial\flyway.conf migrate
 6. If everything goes well you can push your code to remote repo:
    delete git and github folder from your local machine (local clone of repo)
-   git init
-   git add .
-   git commit -m 'your message'
+   git init /
+   git add . /
+   git commit -m 'your message' /
    git push origin master
 7. Open up workflow on github and monitor CI CD pipeline execution.
    
